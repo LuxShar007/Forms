@@ -242,33 +242,16 @@ export default function ParticipantInfoScreen({ initial, onSubmit }: Props) {
         </div>
       </div>
 
-      <motion.button
+      <button
         onClick={handleSubmit}
-        whileHover={{ scale: 1.02, y: -1 }}
-        whileTap={{ scale: 0.98 }}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          background: 'var(--cubet-purple)',
-          color: 'white',
-          fontWeight: 600,
-          fontSize: '1rem',
-          minHeight: '48px',
-          padding: '14px 24px',
-          borderRadius: '12px',
-          border: 'none',
-          cursor: 'pointer',
-          fontFamily: 'Inter, sans-serif',
-          marginTop: '32px',
-          boxShadow: '0 4px 24px rgba(124, 58, 237, 0.4)',
-        }}
+        className="shiny-cta shiny-cta-full"
+        style={{ marginTop: '32px' }}
       >
-        Start the survey
-        <ArrowRight size={18} />
-      </motion.button>
+        <span>
+          Start the survey
+          <ArrowRight size={18} />
+        </span>
+      </button>
     </motion.div>
   );
 }

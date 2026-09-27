@@ -255,31 +255,16 @@ export default function QuestionScreen({
               Back
             </button>
 
-            <motion.button
+            <button
               onClick={onNext}
               disabled={!canContinue}
-              whileHover={canContinue ? { scale: 1.02, y: -1 } : {}}
-              whileTap={canContinue ? { scale: 0.98 } : {}}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: canContinue ? 'var(--cubet-purple)' : 'var(--surface-3)',
-                color: canContinue ? 'white' : 'var(--text-tertiary)',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-                padding: '12px 28px',
-                borderRadius: '10px',
-                border: 'none',
-                cursor: canContinue ? 'pointer' : 'not-allowed',
-                transition: 'all 0.2s',
-                fontFamily: 'Inter, sans-serif',
-                boxShadow: canContinue ? '0 4px 20px rgba(124, 58, 237, 0.35)' : 'none',
-              }}
+              className="shiny-cta"
             >
-              Continue
-              <ArrowRight size={16} />
-            </motion.button>
+              <span>
+                Continue
+                <ArrowRight size={16} />
+              </span>
+            </button>
           </div>
         </motion.div>
       </AnimatePresence>

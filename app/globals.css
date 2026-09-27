@@ -258,6 +258,27 @@ body {
 .shiny-cta:focus-visible {
   outline: none;
 }
+
+/* Reset native <button> styles so shiny-cta works on both <a> and <button> */
+button.shiny-cta {
+  appearance: none;
+  -webkit-appearance: none;
+  background-clip: unset;
+}
+
+/* Full-width variant for survey action buttons */
+.shiny-cta-full {
+  width: 100%;
+}
+
+/* Disabled state */
+.shiny-cta:disabled,
+.shiny-cta[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 @property --gradient-angle {
   syntax: "<angle>";
   initial-value: 0deg;

@@ -117,34 +117,17 @@ export default function ConsentScreen({ onAccept, consentChecked, onToggleConsen
         </span>
       </label>
 
-      <motion.button
+      <button
         onClick={onAccept}
         disabled={!consentChecked}
-        whileHover={consentChecked ? { scale: 1.02, y: -1 } : {}}
-        whileTap={consentChecked ? { scale: 0.98 } : {}}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          background: consentChecked ? 'var(--cubet-purple)' : 'var(--surface-3)',
-          color: consentChecked ? 'white' : 'var(--text-tertiary)',
-          fontWeight: 600,
-          fontSize: '1rem',
-          minHeight: '48px',
-          padding: '14px 24px',
-          borderRadius: '12px',
-          border: 'none',
-          cursor: consentChecked ? 'pointer' : 'not-allowed',
-          fontFamily: 'Inter, sans-serif',
-          transition: 'all 0.2s',
-          boxShadow: consentChecked ? '0 4px 24px rgba(124, 58, 237, 0.4)' : 'none',
-        }}
+        className="shiny-cta shiny-cta-full"
+        style={{ marginTop: '0' }}
       >
-        Begin the study
-        <ArrowRight size={18} />
-      </motion.button>
+        <span>
+          Begin the study
+          <ArrowRight size={18} />
+        </span>
+      </button>
     </motion.div>
   );
 }
