@@ -278,8 +278,8 @@ body {
 }
 
 :root {
-  --shiny-cta-bg: #0a0a14;
-  --shiny-cta-bg-subtle: rgba(255, 255, 255, 0.18);
+  --shiny-cta-bg: #000000;
+  --shiny-cta-bg-subtle: #1a1818;
   --shiny-cta-fg: #ffffff;
   --shiny-cta-highlight: #7c3aed;
   --shiny-cta-highlight-subtle: #c4b5fd;
@@ -294,17 +294,15 @@ body {
   overflow: hidden;
   cursor: pointer;
   outline-offset: 4px;
-  padding: 1.15rem 2.6rem;
+  padding: 1.25rem 2.5rem;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.2;
-  letter-spacing: -0.01em;
   border: 1px solid transparent;
   border-radius: 360px;
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  color: var(--shiny-cta-fg);
   background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
       padding-box,
     conic-gradient(
@@ -316,35 +314,31 @@ body {
         transparent calc(var(--gradient-percent) * 4)
       )
       border-box;
-  box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle),
-    0 0 0 1px rgba(0, 0, 0, 0.5),
-    0 12px 36px -6px rgba(124, 58, 237, 0.5),
-    0 4px 16px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   text-decoration: none;
   touch-action: manipulation;
-  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Pseudo-element base — exact Webflow positioning */
 .shiny-cta::before,
 .shiny-cta::after,
 .shiny-cta span::before {
   content: "";
   pointer-events: none;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
   z-index: -1;
 }
 
 .shiny-cta:active {
-  transform: translateY(2px) scale(0.98);
+  translate: 0 1px;
 }
 
 /* Dots pattern */
@@ -375,7 +369,7 @@ body {
     black
   );
   border-radius: inherit;
-  opacity: 0.35;
+  opacity: 0.4;
   z-index: -1;
 }
 
@@ -417,7 +411,7 @@ body {
   --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
   transition: var(--transition);
   transition-property: --gradient-angle-offset, --gradient-percent,
-    --gradient-shine;
+    --gradient-shine, translate, box-shadow;
 }
 
 .shiny-cta,
@@ -437,10 +431,8 @@ body {
   --gradient-percent: 20%;
   --gradient-angle-offset: 95deg;
   --gradient-shine: var(--shiny-cta-highlight-subtle);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28),
-    0 0 0 1px rgba(0, 0, 0, 0.5),
-    0 16px 48px -4px rgba(124, 58, 237, 0.7),
-    0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 16px 48px -4px rgba(124, 58, 237, 0.6);
 }
 
 .shiny-cta:is(:hover, :focus-visible),
@@ -459,18 +451,20 @@ body {
   }
 }
 
+/* Exact Webflow shimmer — uses standalone rotate property */
 @keyframes shimmer {
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    rotate: 360deg;
   }
 }
 
+/* Exact Webflow breathe — uses standalone scale property */
 @keyframes breathe {
   from,
   to {
-    transform: translate(-50%, -50%) scale(1);
+    scale: 1;
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.2);
+    scale: 1.2;
   }
 }
