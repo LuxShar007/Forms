@@ -1,8 +1,8 @@
 'use client';
 // components/admin/DashboardHeader.tsx
-// Elevated, modern header for the responses dashboard
+// Minimal, sophisticated Apple / Linear / Vercel style header for Cubet Research
 
-import { ShieldCheck, Download, LogOut, ExternalLink, RefreshCw, Database, Layers } from 'lucide-react';
+import { Download, LogOut, ExternalLink, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 interface DashboardHeaderProps {
@@ -25,91 +25,66 @@ export default function DashboardHeader({
   };
 
   return (
-    <header className="w-full border-b border-white/[0.08] bg-[#070712]/75 backdrop-blur-2xl sticky top-0 z-30 shadow-2xl shadow-black/40">
-      {/* Top subtle specular ambient line */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 via-violet-500/30 to-transparent" />
-
-      <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 h-20 flex items-center justify-between">
-        {/* Left: Branding & Status */}
-        <div className="flex items-center gap-4">
-          <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-violet-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-80 transition duration-300" />
-            <div className="relative w-11 h-11 rounded-2xl bg-[#0b0b18] border border-white/15 flex items-center justify-center shadow-lg">
-              <Layers className="w-5 h-5 text-cyan-300" />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center gap-2.5">
-              <h1 className="text-base sm:text-lg font-bold tracking-tight text-white font-sans flex items-center gap-2">
-                <span>Survey Responses</span>
-              </h1>
-              <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-gradient-to-r from-violet-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold tracking-wider shadow-sm shadow-cyan-500/10">
-                Executive Console
+    <header className="w-full border-b border-white/[0.06] bg-[#08080B]/80 backdrop-blur-xl sticky top-0 z-30">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        {/* Left: Cubet Research / Music Experience Study */}
+        <div className="flex flex-col justify-center">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-medium tracking-wide uppercase text-[#8E8E93]">
+              Cubet Research
+            </span>
+            {isLive && (
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                Live
               </span>
-            </div>
-
-            <div className="flex items-center gap-3 mt-1 text-xs">
-              <div className="flex items-center gap-2 px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/5">
-                <span className="relative flex h-2 w-2">
-                  <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isLive ? 'bg-emerald-400' : 'bg-cyan-400'}`} />
-                  <span className={`relative inline-flex rounded-full h-2 w-2 ${isLive ? 'bg-emerald-500' : 'bg-cyan-500'}`} />
-                </span>
-                <span className="font-mono text-[11px] text-white/60 flex items-center gap-1.5">
-                  {isLive ? (
-                    <>
-                      <Database className="w-3 h-3 text-emerald-400" />
-                      <span className="text-emerald-300/90 font-medium">Supabase Live DB</span>
-                    </>
-                  ) : (
-                    <span>Local Storage Active</span>
-                  )}
-                </span>
-              </div>
-
-              <span className="text-white/20">•</span>
-
-              <span className="text-[11px] font-mono text-white/70">
-                <strong className="text-white font-semibold">{totalResponses}</strong> Verified Submissions
-              </span>
-            </div>
+            )}
           </div>
+          <h1 className="text-lg sm:text-xl font-semibold tracking-tight text-[#EDEDEF]">
+            Music Experience Study
+          </h1>
+          <p className="text-xs text-[#8E8E93] mt-0.5">
+            {totalResponses} {totalResponses === 1 ? 'response' : 'responses'} · Updated just now
+          </p>
         </div>
 
-        {/* Right: Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Right side actions */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <button
             onClick={onRefresh}
             disabled={refreshing}
             title="Refresh Data"
-            className="px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-white/80 hover:text-white text-xs font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-50 shadow-sm"
+            className="px-3 py-1.5 rounded-lg bg-[#15151B] hover:bg-[#1C1C24] border border-white/[0.06] hover:border-white/[0.12] text-[#EDEDEF] text-xs font-medium flex items-center gap-1.5 transition duration-150 cursor-pointer disabled:opacity-50"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin text-cyan-400' : 'text-white/60'}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-[#8E8E93] ${refreshing ? 'animate-spin text-purple-400' : ''}`} />
             <span className="hidden sm:inline">Refresh</span>
           </button>
 
           <button
             onClick={handleExportCsv}
-            className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500/15 via-blue-500/15 to-indigo-500/15 hover:from-cyan-500/25 hover:via-blue-500/25 hover:to-indigo-500/25 border border-cyan-500/30 hover:border-cyan-400/50 text-cyan-200 text-xs font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20"
+            title="Export responses as CSV"
+            className="px-3 py-1.5 rounded-lg bg-[#15151B] hover:bg-[#1C1C24] border border-white/[0.06] hover:border-white/[0.12] text-[#EDEDEF] text-xs font-medium flex items-center gap-1.5 transition duration-150 cursor-pointer"
           >
-            <Download className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="hidden sm:inline font-semibold">Export CSV</span>
+            <Download className="w-3.5 h-3.5 text-[#8E8E93]" />
+            <span className="hidden sm:inline">Export CSV</span>
           </button>
 
           <Link
             href="/"
             target="_blank"
-            className="px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-white/80 hover:text-white text-xs font-medium flex items-center gap-2 transition-all duration-200 shadow-sm"
+            title="Open Live Public Form"
+            className="px-3 py-1.5 rounded-lg bg-[#15151B] hover:bg-[#1C1C24] border border-white/[0.06] hover:border-white/[0.12] text-[#EDEDEF] text-xs font-medium flex items-center gap-1.5 transition duration-150"
           >
-            <ExternalLink className="w-3.5 h-3.5 text-white/60" />
+            <ExternalLink className="w-3.5 h-3.5 text-[#8E8E93]" />
             <span className="hidden md:inline">Open Live Form</span>
           </Link>
 
-          <div className="h-6 w-px bg-white/10 mx-1 hidden sm:block" />
+          <div className="h-4 w-px bg-white/[0.08] mx-1 hidden sm:block" />
 
           <button
             onClick={onLogout}
-            className="px-3 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/25 hover:border-rose-500/40 text-rose-300 hover:text-rose-200 text-xs font-medium flex items-center gap-1.5 transition-all duration-200 cursor-pointer"
+            title="Sign out of Admin"
+            className="px-3 py-1.5 rounded-lg bg-transparent hover:bg-white/[0.04] text-[#8E8E93] hover:text-[#EDEDEF] text-xs font-medium flex items-center gap-1.5 transition duration-150 cursor-pointer"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Sign Out</span>

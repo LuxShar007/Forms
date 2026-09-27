@@ -1,11 +1,11 @@
 'use client';
 // app/responses/login/page.tsx
-// Secure login screen for Cubet Research authorized personnel
+// Secure login screen for Cubet Research with Apple / Linear minimal aesthetic
 
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Lock, ShieldCheck, ArrowRight, Sparkles, AlertCircle, Loader2 } from 'lucide-react';
+import { Lock, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import CubetMusicField from '@/components/CubetMusicField';
 
@@ -24,7 +24,7 @@ function LoginFormContent() {
     setLoading(true);
     setError(null);
 
-    const loginEmail = isDemo ? 'admin@forms.com' : email;
+    const loginEmail = isDemo ? 'admin@cubet.space' : email;
     const loginPassword = isDemo ? 'admin123!' : password;
 
     try {
@@ -56,141 +56,113 @@ function LoginFormContent() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="relative z-10 w-full max-w-md"
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="relative z-10 w-full max-w-sm"
     >
-      <div className="bg-[#121226]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl shadow-black/60 relative overflow-hidden">
-        {/* Top accent beam */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-indigo-500" />
-
-        {/* Badge */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-wider">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Admin Authentication</span>
-          </div>
+      <div className="bg-[#101014] border border-white/[0.06] rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-[11px] font-medium tracking-wide uppercase text-[#8E8E93]">
+            Cubet Research
+          </span>
           <Link
             href="/"
-            className="text-xs text-white/50 hover:text-white transition-colors"
+            className="text-xs text-[#8E8E93] hover:text-[#EDEDEF] transition-colors"
           >
-            Back to Form
+            Open Form
           </Link>
         </div>
 
-        <div className="mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-            Admin Portal
+        <div className="mb-6">
+          <h1 className="text-xl font-semibold tracking-tight text-[#EDEDEF]">
+            Sign in
           </h1>
-          <p className="text-sm text-white/50 mt-1.5">
-            Authorized access to participant survey responses, audio analytics, and research dossiers.
+          <p className="text-xs text-[#8E8E93] mt-1">
+            Access study responses and participant intelligence.
           </p>
         </div>
 
         {error && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="mb-6 p-3.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-xs flex items-center gap-2.5"
-          >
-            <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+          <div className="mb-5 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-300 text-xs flex items-center gap-2">
+            <AlertCircle className="w-3.5 h-3.5 shrink-0 text-red-400" />
             <span>{error}</span>
-          </motion.div>
+          </div>
         )}
 
         <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-white/70 mb-1.5 uppercase tracking-wider font-mono">
-              Researcher Email
+            <label className="block text-xs font-medium text-[#8E8E93] mb-1.5">
+              Email
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@forms.com"
-              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/40 transition-all text-sm"
+              placeholder="researcher@cubet.space"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-[#15151B] border border-white/[0.08] text-sm text-[#EDEDEF] placeholder-[#8E8E93] focus:outline-none focus:border-white/[0.25] transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-white/70 mb-1.5 uppercase tracking-wider font-mono">
-              Access Key / Password
+            <label className="block text-xs font-medium text-[#8E8E93] mb-1.5">
+              Password
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
-              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/40 transition-all text-sm"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-[#15151B] border border-white/[0.08] text-sm text-[#EDEDEF] placeholder-[#8E8E93] focus:outline-none focus:border-white/[0.25] transition"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            className="w-full py-2.5 px-4 rounded-lg bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-medium text-xs transition duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2 shadow-sm"
           >
             {loading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Verifying Authorization...</span>
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <span>Authenticating...</span>
               </>
             ) : (
               <>
-                <Lock className="w-4 h-4" />
-                <span>Authenticate & Enter</span>
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <span>Sign In</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </>
             )}
           </button>
         </form>
 
-        {/* Reviewer / Fast Access Demo Option */}
-        <div className="mt-6 pt-6 border-t border-white/10 text-center">
-          <p className="text-xs text-white/40 mb-3">
-            Testing or evaluating without Supabase credentials?
-          </p>
+        <div className="mt-6 pt-5 border-t border-white/[0.04] text-center">
           <button
-            type="button"
             onClick={(e) => handleSubmit(e, true)}
             disabled={loading}
-            className="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white/80 hover:text-white text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer"
+            type="button"
+            className="text-xs text-[#8E8E93] hover:text-[#EDEDEF] transition-colors cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Enter with Researcher Demo Key</span>
+            Sign in with demo credentials
           </button>
-        </div>
-
-        <div className="mt-6 text-center">
-          <span className="text-[11px] text-white/30 font-mono">
-            Protected by Supabase Auth & Edge Verification
-          </span>
         </div>
       </div>
     </motion.div>
   );
 }
 
-export default function AdminLoginPage() {
+export default function LoginPage() {
   return (
-    <main className="relative min-h-screen bg-[#080811] text-white flex items-center justify-center p-4 overflow-hidden">
-      {/* Dynamic ambient background */}
-      <CubetMusicField />
-
-      {/* Glow aura */}
-      <div className="absolute w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -top-20 -left-20" />
-      <div className="absolute w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none -bottom-20 -right-20" />
-
-      <Suspense
-        fallback={
-          <div className="text-center text-xs font-mono text-white/50">
-            Initializing security tunnel...
-          </div>
-        }
-      >
+    <div className="min-h-screen w-full bg-[#08080B] text-[#EDEDEF] flex items-center justify-center p-4 relative overflow-hidden">
+      <CubetMusicField subtle />
+      <Suspense fallback={
+        <div className="flex items-center gap-2 text-xs text-[#8E8E93]">
+          <Loader2 className="w-4 h-4 animate-spin text-purple-400" />
+          <span>Loading sign in...</span>
+        </div>
+      }>
         <LoginFormContent />
       </Suspense>
-    </main>
+    </div>
   );
 }

@@ -19,7 +19,7 @@ interface ColorOrb {
   scalePhase: number;
 }
 
-export default function CubetMusicField({ className = '' }: { className?: string }) {
+export default function CubetMusicField({ className = '', subtle = false }: { className?: string; subtle?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animFrameRef = useRef<number>(0);
   const mouseRef = useRef({ x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 });
@@ -32,16 +32,23 @@ export default function CubetMusicField({ className = '' }: { className?: string
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
-    // Palette: Vibrant, varied modern hues (violet, cyan, rose, royal blue, amber, emerald)
-    const orbColors: [number, number, number][] = [
-      [124, 58, 237],  // electric violet
-      [6, 182, 212],   // neon cyan
-      [244, 63, 94],   // rich coral / rose
-      [59, 130, 246],  // deep royal blue
-      [16, 185, 129],  // emerald aurora
-      [217, 70, 239],  // fuchsia
-      [245, 158, 11],  // golden amber
-    ];
+    // Palette: If subtle (admin), use deep muted violet/slate tones with lower saturation.
+    const orbColors: [number, number, number][] = subtle
+      ? [
+          [109, 40, 217], // deep muted violet
+          [79, 70, 229],  // indigo
+          [67, 56, 202],  // deep blue-violet
+          [91, 33, 182],  // dark purple
+        ]
+      : [
+          [124, 58, 237],  // electric violet
+          [6, 182, 212],   // neon cyan
+          [244, 63, 94],   // rich coral / rose
+          [59, 130, 246],  // deep royal blue
+          [16, 185, 129],  // emerald aurora
+          [217, 70, 239],  // fuchsia
+          [245, 158, 11],  // golden amber
+        ];
 
     const initOrbs = () => {
       const W = canvas.width;
@@ -49,16 +56,16 @@ export default function CubetMusicField({ className = '' }: { className?: string
       const minDim = Math.min(W, H);
 
       orbsRef.current = orbColors.map((color, i) => {
-        const baseRadius = minDim * (0.35 + (i % 3) * 0.12);
+        const baseRadius = minDim * (subtle ? 0.45 : 0.35 + (i % 3) * 0.12);
         return {
           x: W * (0.2 + 0.6 * ((i * 0.28) % 1)),
           y: H * (0.2 + 0.6 * ((i * 0.43) % 1)),
           r: baseRadius,
           baseRadius,
           color,
-          opacity: 0.42 + (i % 3) * 0.08,
-          speedX: 0.00045 + (i * 0.00012) % 0.0004,
-          speedY: 0.00038 + (i * 0.00015) % 0.00035,
+          opacity: subtle ? 0.18 : 0.42 + (i % 3) * 0.08,
+          speedX: subtle ? 0.0001 : 0.00045 + (i * 0.00012) % 0.0004,
+          speedY: subtle ? 0.00008 : 0.00038 + (i * 0.00015) % 0.00035,
           phaseX: i * 1.35,
           phaseY: i * 2.15,
           scalePhase: i * 0.8,
@@ -180,10 +187,10 @@ export default function CubetMusicField({ className = '' }: { className?: string
 
       {/* Frost glass overlay with deep blur */}
       <div
-        className="absolute inset-0 bg-[#070711]/40 backdrop-blur-2xl"
+        className={`absolute inset-0 backdrop-blur-2xl ${subtle ? 'bg-[#08080B]/85' : 'bg-[#070711]/40'}`}
         style={{
-          maskImage: 'radial-gradient(circle at center, transparent 30%, black 100%)',
-          WebkitMaskImage: 'radial-gradient(circle at center, transparent 30%, black 100%)',
+          maskImage: subtle ? undefined : 'radial-gradient(circle at center, transparent 30%, black 100%)',
+          WebkitMaskImage: subtle ? undefined : 'radial-gradient(circle at center, transparent 30%, black 100%)',
         }}
       />
 
