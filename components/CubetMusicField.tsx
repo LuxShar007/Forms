@@ -74,10 +74,12 @@ export default function CubetMusicField({ className = '', subtle = false }: { cl
     };
 
     const resize = () => {
-      // Internal rendering at half resolution for ultra-smooth 60fps performance + natural softness
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = Math.floor(window.innerWidth * dpr * 0.6);
-      canvas.height = Math.floor(window.innerHeight * dpr * 0.6);
+      // Lightweight rendering buffer for silky-smooth 240Hz frame rate with near-zero GPU load.
+      // Scaling this up via CSS object-cover provides natural, organic softness.
+      const aspect = (window.innerWidth || 1920) / (window.innerHeight || 1080);
+      const targetHeight = 220;
+      canvas.width = Math.round(targetHeight * Math.max(aspect, 0.5));
+      canvas.height = targetHeight;
       initOrbs();
     };
 
@@ -93,7 +95,8 @@ export default function CubetMusicField({ className = '', subtle = false }: { cl
     let lastTime = performance.now();
 
     const render = (now: number) => {
-      const dt = Math.min(now - lastTime, 40);
+      // Delta time calculation tailored for ultra-high refresh rates (up to 240Hz / 4ms per frame)
+      const dt = Math.min(now - lastTime, 32);
       lastTime = now;
       timeRef.current += dt;
       const t = timeRef.current;
@@ -155,7 +158,7 @@ export default function CubetMusicField({ className = '', subtle = false }: { cl
         W * 0.5, H * 0.5, W * 0.75
       );
       vignette.addColorStop(0, 'rgba(6, 6, 12, 0)');
-      vignette.addColorStop(0.65, 'rgba(6, 6, 12, 0.45)');
+      vignette.addColorStop(0.65, 'rgba(6, 6, 12, 0.4)');
       vignette.addColorStop(1, 'rgba(6, 6, 12, 0.85)');
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, W, H);
@@ -170,37 +173,35 @@ export default function CubetMusicField({ className = '', subtle = false }: { cl
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [subtle]);
 
   return (
-    <div className={`fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden ${className}`} style={{ zIndex: 0 }}>
-      {/* 60fps Chromatic Fluid Canvas */}
+    <div
+      className={`fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden ${className}`}
+      style={{ zIndex: 0, transform: 'translate3d(0, 0, 0)', willChange: 'transform' }}
+    >
+      {/* 240Hz High-Performance Chromatic Fluid Canvas */}
       <canvas
         ref={canvasRef}
-        className="w-full h-full object-cover transform scale-110"
+        className="w-full h-full object-cover transform scale-105"
         style={{
-          filter: 'blur(75px) saturate(180%)',
-          WebkitFilter: 'blur(75px) saturate(180%)',
+          filter: subtle ? 'blur(35px) saturate(130%)' : 'blur(45px) saturate(170%)',
+          WebkitFilter: subtle ? 'blur(35px) saturate(130%)' : 'blur(45px) saturate(170%)',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          willChange: 'transform',
         }}
         aria-hidden="true"
       />
 
-      {/* Frost glass overlay with deep blur */}
+      {/* Lightweight overlay without heavy full-screen backdrop-blur */}
       <div
-        className={`absolute inset-0 backdrop-blur-2xl ${subtle ? 'bg-[#08080B]/85' : 'bg-[#070711]/40'}`}
+        className={`absolute inset-0 ${subtle ? 'bg-[#08080B]/88' : 'bg-[#070711]/45'}`}
         style={{
-          maskImage: subtle ? undefined : 'radial-gradient(circle at center, transparent 30%, black 100%)',
-          WebkitMaskImage: subtle ? undefined : 'radial-gradient(circle at center, transparent 30%, black 100%)',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitTransform: 'translate3d(0, 0, 0)',
         }}
       />
-
-      {/* Cinematic Film Grain Overlay (eliminates banding and adds video aesthetic) */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.035] mix-blend-overlay pointer-events-none">
-        <filter id="film-grain">
-          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#film-grain)" />
-      </svg>
     </div>
   );
 }

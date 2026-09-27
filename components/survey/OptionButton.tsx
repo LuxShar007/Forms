@@ -46,12 +46,12 @@ export default function OptionButton({
         cursor: disabled && !selected ? 'not-allowed' : 'pointer',
         opacity: disabled && !selected ? 0.4 : 1,
         textAlign: 'left',
-        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        transition: 'background-color 0.12s ease, border-color 0.12s ease, opacity 0.12s ease',
         touchAction: 'manipulation',
+        transform: 'translate3d(0, 0, 0)',
+        willChange: 'transform',
       }}
-      className={!disabled || selected ? 'glass-card-hover' : ''}
+      className={!disabled || selected ? 'hover:border-purple-500/40' : ''}
     >
       {/* Indicator */}
       <div

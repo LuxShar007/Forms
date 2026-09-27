@@ -116,7 +116,8 @@ export default function QuestionScreen({
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          style={{ transform: 'translate3d(0, 0, 0)', willChange: 'transform, opacity' }}
         >
           {/* Question number badge */}
           <div style={{ marginBottom: '12px' }}>
