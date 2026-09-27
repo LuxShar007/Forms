@@ -1,0 +1,201 @@
+[
+  {
+    "id": "res_1790492781858_x7bshtj",
+    "name": "Jordan Lee",
+    "email": "jordan.lee@example.com",
+    "age_range": "25-34",
+    "answers": {
+      "q1": {
+        "selected": "major_part",
+        "text": "Music is my life"
+      },
+      "q2": {
+        "selected": "2_4hr"
+      }
+    },
+    "survey_version": "1.0",
+    "completion_time_seconds": 180,
+    "future_research_opt_in": true,
+    "submitted_at": "2026-09-27T07:06:21.858Z"
+  },
+  {
+    "id": "res_1790491971732_n0zllit",
+    "name": "Sharvin",
+    "email": "ssm2019@gmail.com",
+    "age_range": "18–20",
+    "answers": {
+      "q1": {
+        "selected": "major_part",
+        "text": ""
+      },
+      "q2": {
+        "selected": "4hr_plus",
+        "text": ""
+      },
+      "q3": {
+        "selected": [
+          "mood_based",
+          "follow_artists"
+        ],
+        "text": ""
+      },
+      "q4": {
+        "selected": [
+          "studying",
+          "working",
+          "travelling",
+          "relaxing",
+          "commuting",
+          "socializing"
+        ],
+        "text": ""
+      },
+      "q5": {
+        "selected": [
+          "activity",
+          "genre",
+          "discovering_new"
+        ],
+        "text": ""
+      },
+      "q6": {
+        "selected": [
+          "study",
+          "focus",
+          "escape",
+          "remember_moments"
+        ],
+        "text": ""
+      },
+      "q7": {
+        "selected": [
+          "apple_music",
+          "spotify"
+        ],
+        "text": ""
+      },
+      "q8": {
+        "selected": [
+          "know_artist",
+          "recommended",
+          "lyrics"
+        ],
+        "text": ""
+      },
+      "q9": {
+        "selected": "sometimes",
+        "text": ""
+      },
+      "q10": {
+        "selected": [
+          "too_repetitive",
+          "too_familiar"
+        ],
+        "text": ""
+      },
+      "q11": {
+        "selected": [
+          "spotify"
+        ],
+        "text": ""
+      },
+      "q12": {
+        "selected": [
+          "discovery",
+          "personalization"
+        ],
+        "text": ""
+      },
+      "q13": {
+        "selected": [
+          "irrelevant_recs",
+          "cant_find_mood"
+        ],
+        "text": ""
+      },
+      "q14": {
+        "selected": [
+          "concentrate",
+          "feel_energetic",
+          "feel_nostalgic",
+          "escape",
+          "express_personality"
+        ],
+        "text": ""
+      },
+      "q15": {
+        "selected": [
+          "beat",
+          "melody",
+          "voice",
+          "atmosphere"
+        ],
+        "text": ""
+      },
+      "q16": {
+        "selected": "rarely",
+        "text": ""
+      },
+      "q17": {
+        "selected": [
+          "current_mood",
+          "language_pref",
+          "time_of_day",
+          "energy_level",
+          "activity",
+          "usual_moods"
+        ],
+        "text": ""
+      },
+      "q18": {
+        "selected": "describe_exactly",
+        "text": ""
+      },
+      "q19": {
+        "selected": "describe_and_find",
+        "text": ""
+      },
+      "q20": {
+        "selected": "",
+        "text": "nICE"
+      },
+      "q21": {
+        "selected": [
+          "less_effort"
+        ],
+        "text": ""
+      },
+      "q22": {
+        "selected": "probably",
+        "text": ""
+      },
+      "q23": {
+        "selected": "yes",
+        "text": ""
+      }
+    },
+    "survey_version": "1.0",
+    "completion_time_seconds": 2033,
+    "future_research_opt_in": true,
+    "submitted_at": "2026-09-27T06:52:51.734Z"
+  },
+  {
+    "id": "res_1790491422827_znldpmj",
+    "name": "Alex Rivera",
+    "email": "alex.rivera@example.com",
+    "age_range": "25-34",
+    "answers": {
+      "q1": {
+        "selected": "major_part",
+        "text": "Music is everything to me"
+      },
+      "q2": {
+        "selected": "2_4hr"
+      }
+    },
+    "survey_version": "1.0",
+    "completion_time_seconds": 210,
+    "future_research_opt_in": true,
+    "submitted_at": "2026-09-27T06:43:42.832Z"
+  }
+]
