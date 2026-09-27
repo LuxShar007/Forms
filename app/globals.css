@@ -253,6 +253,11 @@ body {
 }
 
 /* ─── Webflow 3D Glass Animation Button (animation-button-3d.webflow.io) ─── */
+/* Remove rectangular focus ring — the animated border glow is the indicator */
+.shiny-cta:focus,
+.shiny-cta:focus-visible {
+  outline: none;
+}
 @property --gradient-angle {
   syntax: "<angle>";
   initial-value: 0deg;
